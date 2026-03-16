@@ -46,6 +46,7 @@ target_sources(appshell PRIVATE
 
 qt_add_resources(appshell appshell_resources
     PREFIX /
+    BASE ${CMAKE_CURRENT_LIST_DIR}
     FILES
         ${CMAKE_CURRENT_LIST_DIR}/qml/AppWindow.qml
         ${CMAKE_CURRENT_LIST_DIR}/qml/Main.qml
