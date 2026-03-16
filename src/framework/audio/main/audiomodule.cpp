@@ -121,7 +121,7 @@ void AudioContext::registerExports()
 #endif
 
 #ifdef Q_OS_WASM
-    m_soundFontController = std::make_shared<WebSoundFontController>();
+    m_soundFontController = std::make_shared<WebSoundFontController>(iocContext());
 #else
     m_soundFontController = std::make_shared<GeneralSoundFontController>(iocContext());
 #endif

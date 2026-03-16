@@ -30,6 +30,11 @@
 using namespace muse::audio;
 using namespace muse::audio::rpc;
 
+WebSoundFontController::WebSoundFontController(const muse::modularity::ContextPtr& iocCtx)
+    : muse::Contextable(iocCtx)
+{
+}
+
 void WebSoundFontController::loadSoundFonts()
 {
     // noop
