@@ -23,7 +23,9 @@
 #pragma once
 
 #include <QDir>
+#ifndef Q_OS_WASM
 #include <QProcess>
+#endif
 
 #include "global/modularity/ioc.h"
 #include "global/iglobalconfiguration.h"
@@ -162,6 +164,7 @@ private:
 ///   plugin to be platform dependant. \since MuseScore 3.2
 //---------------------------------------------------------
 
+#ifndef Q_OS_WASM
 class MsProcess : public QProcess
 {
     Q_OBJECT
@@ -185,4 +188,5 @@ public slots:
     /// --
     Q_INVOKABLE QByteArray readAllStandardOutput() { return QProcess::readAllStandardOutput(); }
 };
+#endif // Q_OS_WASM
 }
