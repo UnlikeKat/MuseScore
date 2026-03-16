@@ -100,7 +100,10 @@ public:
 
     muse::ValCh<muse::Uri> currentUri() const override;
     muse::RetVal<bool> isCurrentUriDialog() const override;
+    muse::async::Notification currentUriAboutToBeChanged() const override;
     std::vector<muse::Uri> stack() const override;
+    QWindow* topWindow() const override;
+    bool topWindowIsWidget() const override;
 
     muse::Ret openUrl(const std::string& url) const override;
     muse::Ret openUrl(const QUrl& url) const override;
