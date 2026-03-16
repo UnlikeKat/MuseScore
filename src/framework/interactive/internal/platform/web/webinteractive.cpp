@@ -319,9 +319,24 @@ RetVal<bool> WebInteractive::isCurrentUriDialog() const
     return m_origin->isCurrentUriDialog();
 }
 
+async::Notification WebInteractive::currentUriAboutToBeChanged() const
+{
+    return m_origin->currentUriAboutToBeChanged();
+}
+
 std::vector<Uri> WebInteractive::stack() const
 {
     return m_origin->stack();
+}
+
+QWindow* WebInteractive::topWindow() const
+{
+    return m_origin->topWindow();
+}
+
+bool WebInteractive::topWindowIsWidget() const
+{
+    return m_origin->topWindowIsWidget();
 }
 
 Ret WebInteractive::openUrl(const std::string& url) const
