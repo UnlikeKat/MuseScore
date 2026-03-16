@@ -18,12 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-declare_module(appshell)
+muse_create_module(appshell)
 
-set(MODULE_QRC appshell.qrc)
-set(MODULE_QML_IMPORT ${CMAKE_CURRENT_LIST_DIR}/qml)
-
-set(MODULE_SRC
+target_sources(appshell PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/appshellmodule.cpp
     ${CMAKE_CURRENT_LIST_DIR}/appshellmodule.h
     ${CMAKE_CURRENT_LIST_DIR}/iappshellconfiguration.h
@@ -45,15 +42,24 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_LIST_DIR}/view/notationstatusbarmodel.h
     ${CMAKE_CURRENT_LIST_DIR}/view/navigableappmenumodel.cpp
     ${CMAKE_CURRENT_LIST_DIR}/view/navigableappmenumodel.h
-    )
+)
 
-set(MODULE_LINK
+qt_add_resources(appshell appshell_resources
+    PREFIX /
+    FILES
+        ${CMAKE_CURRENT_LIST_DIR}/qml/AppWindow.qml
+        ${CMAKE_CURRENT_LIST_DIR}/qml/Main.qml
+        ${CMAKE_CURRENT_LIST_DIR}/qml/AppButtonBackground.qml
+        ${CMAKE_CURRENT_LIST_DIR}/qml/AppMenuBar.qml
+        ${CMAKE_CURRENT_LIST_DIR}/qml/NotationFrame.qml
+        ${CMAKE_CURRENT_LIST_DIR}/qml/DevFrame.qml
+)
+
+target_link_libraries(appshell PRIVATE
     muse::ui
     muse::uicomponents
     Qt::Quick
-    )
+)
 
 # we use QKeyMapper to fix https://github.com/musescore/MuseScore/issues/10181
-set(MODULE_INCLUDE_PRIVATE ${Qt6Gui_PRIVATE_INCLUDE_DIRS} )
-
-setup_module()
+target_include_directories(appshell PRIVATE ${Qt6Gui_PRIVATE_INCLUDE_DIRS})
